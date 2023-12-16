@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const HOST = "http://localhost:3031/";
+const HOST = "http://localhost:3001/";
 const API = "api/email";
 const URL = HOST + API;
 
@@ -12,11 +12,10 @@ const axiosInstance = axios.create({
   },
 });
 
-
 const requisitions = {
   async get(endpoint) {
     try {
-      const response = await axiosInstance.get(endpoint);
+      const response = await axiosInstance.get();
       return response.data;
     } catch (error) {
       console.error("Erro na requisição GET:", error);
@@ -24,15 +23,12 @@ const requisitions = {
     }
   },
 
-  async getByEmail(endpoint, email) {
+  async getByEmail(email) {
     try {
-      const response = await axiosInstance.get(endpoint, {
-        params: { email },
-      });
+      const response = await axiosInstance.get(`/email/${email}`);
       return response.data;
     } catch (error) {
       console.error("Erro na requisição GET by Email:", error);
-      throw error;
     }
   },
 
