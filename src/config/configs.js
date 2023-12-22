@@ -10,21 +10,26 @@ const configs = {
   timeBetweenAccounts: 60000,
 };
 
-const selectors = {};
+const selectors = {
+  loginEmail: "#email",
+  loginPassword: "#password",
+  btnNext: "#send",
+};
 
 const urls = {
-  loginAccountGoogle:
-    "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmyaccount.google.com%3Futm_source%3Daccount-marketing-page%26utm_medium%3Dgo-to-account-button&ifkv=ASKXGp0cQjoFZf7oG8zLmN2WkRag9GVulWxBbRpvN3KsJH6QATAKb2YQL9dcJqk7aU6LqbwdhN-AoA&service=accountsettings&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S1711474959%3A1702677161781326&theme=glif",
+  login: "https://www.epicgames.com/id/login",
 };
 
 const puppeteerConfigs = {
-  executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+  executablePath:
+    "C:/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe",
   headless: false,
   timeout: 60000,
   defaultViewport: {
     width: 800,
     height: 600,
   },
+  args: ["--no-sandbox", "--disable-setuid-sandbox"],
 };
 
 let browser;
@@ -41,4 +46,12 @@ const initBrowser = async () => {
   }
 };
 
-export { configs, selectors, initBrowser, urls };
+const randomTimer = () => {
+  let maxTimer = 12;
+  let minTimer = 6;
+  let min = Math.ceil(maxTimer);
+  let max = Math.floor(minTimer);
+  return (Math.floor(Math.random() * (max - min + 1)) + min) * 1000;
+};
+
+export { configs, selectors, initBrowser, urls, randomTimer };

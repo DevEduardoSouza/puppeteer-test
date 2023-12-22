@@ -28,7 +28,8 @@ const requisitions = {
       const response = await axiosInstance.get(`/email/${email}`);
       return response.data;
     } catch (error) {
-      console.error("Erro na requisição GET by Email:", error);
+      console.log("Erro na requisição GET by Email:");
+      return "";
     }
   },
 
